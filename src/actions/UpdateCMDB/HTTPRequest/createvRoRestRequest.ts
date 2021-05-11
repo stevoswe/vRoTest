@@ -63,14 +63,13 @@ export class createvRoRestRequest extends UpdateCMDBBase{
 
         System.log("DEBUG createRESTRequest: body: " + body);
 
-        // Determine the operation type and build the MXL body accordingly
+        // Determine the operation type and build the XML body accordingly
         if( targetRESTObject.defaultContentType === "application/xml" ) {
             throw new Error("createRESTRequest: xml payload not supported yet ")
         }
 
         // Now run create the REST request
-        // ToDo: determine exactly how to pass the required parameters
-        //request = targetRESTObject.createRequest(body);
+        request = targetRESTObject.createRequest([], body);
 
         //return request;
         return "ToDo: return the REST request";

@@ -66,11 +66,14 @@ export class deletevRoRestRequest extends UpdateCMDBBase{
         }
 
         // Now run create the REST request
-        // ToDo: determine exactly how to pass the required parameters
-        //request = targetRESTObject.createRequest(body);
+        if( targetRESTObject.method === "DELETE" ) {
+                
+        } else {
+            request = targetRESTObject.createRequest([], body);
+        }
 
         //return request;
-        return "ToDo: return the REST request";
+        return request;
 
     }
 }

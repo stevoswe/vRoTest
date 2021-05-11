@@ -8,6 +8,8 @@
  * #L%
  */
 
+import { RESTHost, RESTOperation } from "../UpdateCMDBBase";
+
 /**
  * Run a REST request against a vRO to get RESThost and RESTOperations objects for a given target
  * @param {string} restHostName
@@ -18,8 +20,8 @@ export class getvRoRestHost {
     public getRestHostInstance(restHostName: string, 
                       action: string) {
 
-        let requestHost: any;
-        let requestHostOperation: any
+        let requestHost: RESTHost;
+        let requestHostOperation: RESTOperation;
 
         System.log("DEBUG: restHostName [" + restHostName + "] action [" + action + "]");
                         
@@ -52,7 +54,7 @@ export class getvRoRestHost {
     private getRESTHost(hostName: string) {
 
         /** ToDo: can we create a type mapping to avoid using "any" here to keep Typescript happy? Or how else to fix? */
-        let allHosts: any = Server.findAllForType("REST:RESTHost", null);
+        let allHosts: RESTHost[] = Server.findAllForType("REST:RESTHost", null);
 
         for( let targetHost of allHosts ) {
             if ( targetHost.name === hostName ) {
@@ -70,7 +72,7 @@ export class getvRoRestHost {
     */
     private getRESTOperation(hostname: string, requestHost: any, httpMethod: string) {
 
-        let allHostOperation: any = Server.findAllForType("REST:RESTOperation", null);
+        let allHostOperation: RESTOperation[] = Server.findAllForType("REST:RESTOperation", null);
 
         for( let targetOperation of allHostOperation ) {
             if ( requestHost.id === targetOperation.host.id && targetOperation.name === httpMethod ) {

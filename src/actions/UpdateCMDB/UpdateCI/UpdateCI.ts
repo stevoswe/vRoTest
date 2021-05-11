@@ -84,16 +84,16 @@ export class UpdateCI extends UpdateCMDBBase{
                 // Execute the commit REST request
                 let restResponce = new executevRoRestRequest().executeRESTRequest(request);
                 
-                // ToDo: handle http response from commit calls
                 httpResponse = restResponce.contentAsString;
                 httpStatusCode = restResponce.statusCode;
+
+                if( httpStatusCode >= 400) {
+                    throw new Error("Workflow failed " + httpResponse )
+                }
             }
-
-            
-
         }
 
-        return "ToDo: fix valid REST status";
+        return "Status: " + httpStatusCode;
 
     }
 
