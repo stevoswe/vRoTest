@@ -67,7 +67,7 @@ export class deletevRoRestRequest extends UpdateCMDBBase{
 
         // Now run create the REST request
         if( targetRESTObject.method === "DELETE" ) {
-                
+            request = targetRESTObject.createRequest(ciId);   
         } else {
             request = targetRESTObject.createRequest([], body);
         }
